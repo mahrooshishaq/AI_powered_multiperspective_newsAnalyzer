@@ -53,16 +53,16 @@ This project is designed to help readers, analysts, and recruiters quickly under
 
 The images below are pulled directly from `docs/screenshots/`.
 
-### Home / Landing Page
+### Query Input and Controls
 ![Home page](docs/screenshots/home-page.png.png)
 
-### Query Input and Controls
+### Overview Tab
 ![Query controls](docs/screenshots/query-controls.png.png)
 
-### Overview Tab
+### Sentiment and Tone
 ![Overview](docs/screenshots/overview.png.png)
 
-### Sentiment and Framing
+### Framing Analysis
 ![Sentiment and framing](docs/screenshots/sentiment-framing.png.png)
 
 ### Word Choice Comparison
@@ -71,13 +71,13 @@ The images below are pulled directly from `docs/screenshots/`.
 ### Public Opinion
 ![Public opinion](docs/screenshots/public-opinion.png.png)
 
-### Additional Public Opinion View
+### Top comments drop down view
 ![Public opinion detail](docs/screenshots/public-opinion2.png.png)
 
 ### Sources Tab
 ![Sources](docs/screenshots/sources.png.png)
 
-### Extra Capture
+### Agreements and Disagreements
 ![Extra screenshot](docs/screenshots/Screenshot%202026-06-09%20222419.png)
 
 ## Getting Started
