@@ -9,7 +9,7 @@ Multi-Perspective News Analyzer is a Streamlit application that compares how maj
 - Retrieves related coverage from BBC News, CNN, and Al Jazeera.
 - Searches a local ChromaDB knowledge base built from news article embeddings.
 - Optionally pulls live articles from NewsAPI for current events.
-- Collects public opinion signals from Hacker News and YouTube.
+- Collects public opinion signals from Hacker News.
 - Uses a large language model to produce a structured, side-by-side analysis.
 - Presents the result in a polished Streamlit UI with tabs for overview, sentiment, framing, sources, and public opinion.
 
@@ -102,7 +102,6 @@ Create a `.env` file in the project root and add your API keys:
 ```bash
 NEWSAPI_KEY=your_newsapi_key
 GROQ_API_KEY=your_groq_key
-GEMINI_API_KEY=your_gemini_key
 REDDIT_CLIENT_ID=your_reddit_client_id
 REDDIT_CLIENT_SECRET=your_reddit_client_secret
 ```
