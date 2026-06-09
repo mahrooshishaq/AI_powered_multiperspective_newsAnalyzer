@@ -51,26 +51,34 @@ This project is designed to help readers, analysts, and recruiters quickly under
 
 ## Screenshots
 
-Add your screenshots here to showcase the application clearly for recruiters.
+The images below are pulled directly from `docs/screenshots/`.
 
-Place images in `docs/screenshots/` and replace these placeholders.
+### Home / Landing Page
+![Home page](docs/screenshots/home-page.png.png)
 
-| Feature | Suggested file | Caption |
-|---|---:|---|
-| Home / landing page | docs/screenshots/home-page.png | Landing view with title, subtitle and sidebar. |
-| Query input and controls | docs/screenshots/query-controls.png | Shows the query box, `Analyze` button and option checkboxes. |
-| Overview tab | docs/screenshots/overview.png | Balanced summary, bias verdict and key framing differences. |
-| Sentiment & framing | docs/screenshots/sentiment-framing.png | Side-by-side sentiment and framing cards per source. |
-| Word choice comparison | docs/screenshots/word-choice.png | Table comparing key word choices across outlets. |
-| Public opinion / omissions | docs/screenshots/public-opinion.png | UGC posts and public opinion summary; also agreements/omissions. |
-| Sources tab | docs/screenshots/sources.png | Sources list with links and analysis metrics. |
+### Query Input and Controls
+![Query controls](docs/screenshots/query-controls.png.png)
 
-Optional diagnostic captures (useful for docs):
+### Overview Tab
+![Overview](docs/screenshots/overview.png.png)
 
-| State | Suggested file | Caption |
-|---|---:|---|
-| Empty DB / onboarding | docs/screenshots/db-empty.png | App state when no local ChromaDB is present. |
-| Error details | docs/screenshots/error-details.png | Analysis failure expander showing stack trace or logs. |
+### Sentiment and Framing
+![Sentiment and framing](docs/screenshots/sentiment-framing.png.png)
+
+### Word Choice Comparison
+![Word choice](docs/screenshots/word-choice.png.png)
+
+### Public Opinion
+![Public opinion](docs/screenshots/public-opinion.png.png)
+
+### Additional Public Opinion View
+![Public opinion detail](docs/screenshots/public-opinion2.png.png)
+
+### Sources Tab
+![Sources](docs/screenshots/sources.png.png)
+
+### Extra Capture
+![Extra screenshot](docs/screenshots/Screenshot%202026-06-09%20222419.png)
 
 ## Getting Started
 
