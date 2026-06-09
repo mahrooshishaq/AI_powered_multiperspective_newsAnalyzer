@@ -1,54 +1,168 @@
 # Multi-Perspective News Analyzer
 
-A RAG-powered system that retrieves news articles from BBC News, CNN, and Al Jazeera on any topic and uses LLaMA 3.3 70B to compare how each outlet frames the story — analyzing sentiment, framing angle, word choice, omissions, and more.
+Live demo: https://newsanalyzerai.streamlit.app/
 
-## Prerequisites
+Multi-Perspective News Analyzer is a Streamlit application that compares how major news outlets frame the same story. It combines retrieval-augmented generation, vector search, reranking, and LLM analysis to surface differences in tone, sentiment, framing, word choice, omissions, and public opinion.
+
+## What This Project Does
+
+- Retrieves related coverage from BBC News, CNN, and Al Jazeera.
+- Searches a local ChromaDB knowledge base built from news article embeddings.
+- Optionally pulls live articles from NewsAPI for current events.
+- Collects public opinion signals from Hacker News and YouTube.
+- Uses a large language model to produce a structured, side-by-side analysis.
+- Presents the result in a polished Streamlit UI with tabs for overview, sentiment, framing, sources, and public opinion.
+
+## Why It Is Useful
+
+This project is designed to help readers, analysts, and recruiters quickly understand how media narratives change across sources. Instead of showing only raw search results, it turns the same event into a structured comparison that highlights bias, omissions, and differences in interpretation.
+
+## Key Features
+
+- Multi-source comparison across BBC News, CNN, and Al Jazeera.
+- Retrieval pipeline with embeddings, ChromaDB, and reranking.
+- Optional live fetching for timely article coverage.
+- Public opinion aggregation from Hacker News and YouTube.
+- Structured AI output with sentiment, framing, omissions, and summary sections.
+- Cached results for faster repeat analysis.
+- Streamlit sidebar controls to clear cache or reload the database.
+
+## Tech Stack
+
+- Python
+- Streamlit
+- LangChain
+- ChromaDB
+- sentence-transformers
+- Torch / Transformers
+- NewsAPI
+- PRAW
+- Google Gemini
+- Groq
+
+## Architecture Overview
+
+1. The user enters a news topic in the Streamlit UI.
+2. The app embeds the query and retrieves relevant article chunks from ChromaDB.
+3. Optional live articles are fetched from NewsAPI.
+4. A reranker selects the most relevant evidence.
+5. The LLM analyzes the evidence and returns structured JSON.
+6. The UI renders the results in a recruiter-friendly dashboard.
+
+## Screenshots
+
+Add your screenshots here to showcase the application clearly for recruiters.
+
+Place images in `docs/screenshots/` and replace these placeholders.
+
+| Feature | Suggested file | Caption |
+|---|---:|---|
+| Home / landing page | docs/screenshots/home-page.png | Landing view with title, subtitle and sidebar. |
+| Query input and controls | docs/screenshots/query-controls.png | Shows the query box, `Analyze` button and option checkboxes. |
+| Overview tab | docs/screenshots/overview.png | Balanced summary, bias verdict and key framing differences. |
+| Sentiment & framing | docs/screenshots/sentiment-framing.png | Side-by-side sentiment and framing cards per source. |
+| Word choice comparison | docs/screenshots/word-choice.png | Table comparing key word choices across outlets. |
+| Public opinion / omissions | docs/screenshots/public-opinion.png | UGC posts and public opinion summary; also agreements/omissions. |
+| Sources tab | docs/screenshots/sources.png | Sources list with links and analysis metrics. |
+
+Optional diagnostic captures (useful for docs):
+
+| State | Suggested file | Caption |
+|---|---:|---|
+| Empty DB / onboarding | docs/screenshots/db-empty.png | App state when no local ChromaDB is present. |
+| Error details | docs/screenshots/error-details.png | Analysis failure expander showing stack trace or logs. |
+
+## Getting Started
+
+### Prerequisites
 
 - Python 3.10+
 - pip
 
-## Setup
+### Installation
 
 ```bash
-# 1. Clone the repo and enter the project folder
-cd news_analyzer
-
-# 2. Install dependencies
+git clone https://github.com/mahrooshishaq/AI_powered_multiperspective_newsAnalyzer.git
+cd AI_powered_multiperspective_newsAnalyzer
 pip install -r requirements.txt
-
-# 3. Fill in your API keys
-cp .env .env.local   # or just edit .env directly
-# Edit .env and replace placeholder values with real keys
-
-# 4. Populate the vector database (run once)
-python data/ingest.py
-
-# 5. Start the app
-streamlit run app.py
 ```
 
-## API Keys
+### Environment Variables
 
-| Key | Where to get it |
-|---|---|
-| `NEWSAPI_KEY` | https://newsapi.org |
-| `GROQ_API_KEY` | https://console.groq.com |
-| `GEMINI_API_KEY` | https://aistudio.google.com |
-| `REDDIT_CLIENT_ID` / `REDDIT_CLIENT_SECRET` | https://www.reddit.com/prefs/apps |
+Create a `.env` file in the project root and add your API keys:
 
-## How to Run
+```bash
+NEWSAPI_KEY=your_newsapi_key
+GROQ_API_KEY=your_groq_key
+GEMINI_API_KEY=your_gemini_key
+REDDIT_CLIENT_ID=your_reddit_client_id
+REDDIT_CLIENT_SECRET=your_reddit_client_secret
+```
+
+### Build the Local Database
+
+Run ingestion once to populate the local ChromaDB store:
+
+```bash
+python data/ingest.py
+```
+
+### Run the App Locally
 
 ```bash
 streamlit run app.py
 ```
 
-Open http://localhost:8501 in your browser.
+Then open the app in your browser at http://localhost:8501.
 
-## Known Limitations
+## Deployment
 
-- NewsAPI free tier returns truncated article content (~200 characters). The system combines title, description, and content fields to maximize text.
-- CC-News articles in the vector database may be from 2016–2019. Enable live fetching (NewsAPI) for current events.
-- Groq free tier has rate limits (~30 requests/minute). High usage may trigger temporary blocks — the system automatically falls back to Gemini.
-- BAAI/bge-m3 (~2.3 GB) is downloaded on first run from HuggingFace. Subsequent runs use the local cache.
-- Reddit API rate limit: 60 requests/minute (handled automatically by PRAW).
-- The cross-encoder reranker adds ~2–3 seconds to response time but significantly improves retrieval quality.
+This project is deployed on Streamlit Cloud. To reproduce the deployment:
+
+1. Push the repository to GitHub.
+2. Connect the repository in Streamlit Community Cloud.
+3. Set the app entry point to `app.py`.
+4. Add the required secrets in the Streamlit Cloud settings.
+
+## Configuration Notes
+
+- The app expects news articles from BBC News, CNN, and Al Jazeera.
+- The retrieval layer uses `BAAI/bge-m3` embeddings.
+- Reranking uses `cross-encoder/ms-marco-MiniLM-L-6-v2`.
+- The main analysis model is `llama-3.3-70b-versatile`.
+- If live articles are unavailable, the app can still analyze indexed data.
+
+## Project Structure
+
+```text
+app.py                  # Streamlit entry point
+analysis/               # Prompting, analysis orchestration, LLM client
+config/                 # Constants and app settings
+data/                   # Ingestion pipeline
+retrieval/              # Embeddings, ChromaDB, search, reranking
+social/                 # Hacker News, Reddit, and YouTube public opinion fetchers
+ui/                     # Streamlit layout and reusable UI components
+utils/                  # Cache, logging, and text helpers
+```
+
+## Limitations
+
+- NewsAPI free-tier content can be truncated.
+- The embedded knowledge base may contain older CC-News articles, so live fetching is important for current events.
+- The app depends on several external APIs, so response quality can vary with key availability and rate limits.
+- The first run can take longer because the embedding and reranking models may need to download.
+
+## Recruiter Notes
+
+This project demonstrates experience with:
+
+- Retrieval-augmented generation
+- Media analysis and narrative comparison
+- LLM orchestration and structured JSON output
+- Streamlit product design
+- API integration and caching
+- Vector databases and semantic search
+
+## License
+
+No license has been added yet. Add one if you plan to open-source the repository.
