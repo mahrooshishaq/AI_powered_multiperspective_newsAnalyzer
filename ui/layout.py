@@ -209,7 +209,8 @@ def render_page():
                     tb = traceback.format_exc()
                     st.error(
                         f"**Analysis failed:** {type(e).__name__}: {e}\n\n"
-                        "Try a different or broader topic, or check your API keys in `.env`."
+                        "Check that `GROQ_API_KEY` or `GEMINI_API_KEY` is configured "
+                        "in Streamlit Cloud → Settings → Secrets, then reboot the app."
                     )
                     with st.expander("Show error details"):
                         st.code(tb)
