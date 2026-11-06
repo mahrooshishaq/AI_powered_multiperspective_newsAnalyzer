@@ -102,7 +102,7 @@ Create a `.env` file in the project root and add your API keys:
 ```bash
 NEWSAPI_KEY=your_newsapi_key
 GROQ_API_KEY=your_groq_key
-GROQ_MODEL=llama-3.3-70b-versatile
+GROQ_MODEL=openai/gpt-oss-120b
 GEMINI_API_KEY=your_gemini_key
 REDDIT_CLIENT_ID=your_reddit_client_id
 REDDIT_CLIENT_SECRET=your_reddit_client_secret

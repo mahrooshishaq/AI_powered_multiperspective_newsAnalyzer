@@ -38,7 +38,7 @@ def call_llm(prompt: str, system_message: str = None) -> str:
             from langchain_groq import ChatGroq
             from langchain_core.messages import HumanMessage, SystemMessage
 
-            groq_model = _get_api_key("GROQ_MODEL") or "llama-3.3-70b-versatile"
+            groq_model = _get_api_key("GROQ_MODEL") or "openai/gpt-oss-120b"
             llm = ChatGroq(
                 api_key=groq_key,
                 model_name=groq_model,

@@ -4,7 +4,7 @@ CHROMA_COLLECTION_NAME = "news_articles"
 EMBEDDING_MODEL_NAME = "BAAI/bge-m3"
 RERANKER_MODEL_NAME = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 
-GROQ_MODEL_NAME = "llama-3.3-70b-versatile"
+GROQ_MODEL_NAME = "openai/gpt-oss-120b"
 GEMINI_MODEL_NAME = "gemini-2.0-flash"
 
 TOP_K_RETRIEVAL = 15
