@@ -44,6 +44,7 @@ def call_llm(prompt: str, system_message: str = None) -> str:
                 model_name=groq_model,
                 temperature=0.1,
                 max_tokens=2000,
+                model_kwargs={"response_format": {"type": "json_object"}},
             )
             messages = [
                 SystemMessage(content=system_message),
