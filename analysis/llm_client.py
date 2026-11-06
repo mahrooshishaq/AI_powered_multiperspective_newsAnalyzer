@@ -43,7 +43,7 @@ def call_llm(prompt: str, system_message: str = None) -> str:
                 api_key=groq_key,
                 model_name=groq_model,
                 temperature=0.1,
-                max_tokens=2000,
+                max_tokens=4000,
                 model_kwargs={"response_format": {"type": "json_object"}},
             )
             messages = [

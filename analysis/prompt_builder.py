@@ -101,8 +101,9 @@ Return a JSON object with these exact keys:
   }
 }
 
-Include 2-4 items in word_choice. Include 2-3 items in agreements, disagreements, and framing_differences.
-Include 1-3 omission strings per source.
+Keep every explanation to one sentence and every list to at most 3 items.
+Include 2 items in word_choice, agreements, disagreements, and framing_differences.
+Include 1-2 omission strings per source.
 
 Return ONLY valid JSON. No text before or after the JSON object. Do not use markdown code blocks.
 """)

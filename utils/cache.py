@@ -2,7 +2,7 @@ import os
 import json
 import hashlib
 import time
-from config.settings import CACHE_TTL_HOURS
+from config.settings import ANALYSIS_SCHEMA_VERSION, CACHE_TTL_HOURS
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -11,7 +11,8 @@ CACHE_DIR = "cache"
 
 
 def _cache_path(query: str) -> str:
-    key = hashlib.md5(query.strip().lower().encode()).hexdigest()
+    cache_key = f"{ANALYSIS_SCHEMA_VERSION}:{query.strip().lower()}"
+    key = hashlib.md5(cache_key.encode()).hexdigest()
     return os.path.join(CACHE_DIR, f"{key}.json")
 
 
